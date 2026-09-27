@@ -336,6 +336,7 @@ def backtest(
     allow_short: bool = False,
     thresh_exit: float | None = None,
     min_hold: int = 0,
+    times: pd.Series | None = None,
 ) -> Tuple[Dict[str, float | None], pd.DataFrame]:
     """
     Long-only when p > thresh, optional short when p < 1 - thresh.
@@ -388,7 +389,11 @@ def backtest(
     mask[test_idx] = True
     r_test = r[mask].dropna()  # last bar may be NaN due to shift
     pos_test = pos[mask][: len(r_test)]
-    times_test = prices.index[mask][: len(r_test)]
+    selected_idx = np.flatnonzero(mask)[: len(r_test)]
+    if times is None:
+        times_test = prices.index[selected_idx]
+    else:
+        times_test = pd.DatetimeIndex(times.iloc[selected_idx])
 
     # Transaction costs on position changes
     pos_shift = np.roll(pos_test, 1)
@@ -442,6 +447,7 @@ def tune_threshold(
     thresh_step: float,
     thresh_exit: float | None,
     min_hold: int,
+    times: pd.Series | None = None,
 ) -> float:
     """Grid-search threshold on given index to maximize Sharpe.
     Falls back to best cumulative return if all Sharpes are None.
@@ -461,6 +467,7 @@ def tune_threshold(
             allow_short=allow_short,
             thresh_exit=thresh_exit if thresh_exit is not None else t,
             min_hold=min_hold,
+            times=times,
         )
         sh = metrics.get("sharpe")
         cr = metrics.get("cum_return") or -1e18
@@ -738,6 +745,7 @@ def run_pipeline(
             thresh_step=thresh_step,
             thresh_exit=thresh_exit if thresh_exit is not None else thresh,
             min_hold=min_hold,
+            times=times,
         )
         print(f"[5c] Tuned threshold: {tuned_thresh:.4f}")
 
@@ -752,6 +760,7 @@ def run_pipeline(
         allow_short=allow_short,
         thresh_exit=thresh_exit if thresh_exit is not None else tuned_thresh,
         min_hold=min_hold,
+        times=times,
     )
 
     # Merge metrics
