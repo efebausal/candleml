@@ -1,0 +1,9 @@
+.env
+__pycache__/
+*.py[cod]
+*.sqlite3
+.DS_Store
+
+# Standalone repositories with their own GitHub remotes
+/ci/
+/PAE/

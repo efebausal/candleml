@@ -1,0 +1,13 @@
+{
+  "auc_train": 0.5525256495244119,
+  "auc_val": 0.5139556151688819,
+  "auc_test": 0.4851103734293689,
+  "sharpe": 0.021061890472807755,
+  "hit_rate": 0.45454545454545453,
+  "hit_rate_long": null,
+  "hit_rate_short": null,
+  "cum_return": 0.00020968216461003664,
+  "n_trades": 11,
+  "n_trades_long": null,
+  "n_trades_short": null
+}

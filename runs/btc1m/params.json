@@ -1,0 +1,18 @@
+{
+  "data_path": "btcusdt_1m.csv",
+  "horizon": 5,
+  "test_ratio": 0.15,
+  "val_ratio": 0.15,
+  "thresh": 0.55,
+  "fee_bps": 1.0,
+  "seed": 42,
+  "allow_short": false,
+  "calibrate": false,
+  "data_summary": {
+    "start_timestamp": "2025-08-01 00:24:00+00:00",
+    "end_timestamp": "2025-08-16 16:17:00+00:00",
+    "n_bars": 22554,
+    "bar_seconds": 60.0,
+    "class_balance": 0.49707368981112
+  }
+}

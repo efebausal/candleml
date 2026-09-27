@@ -1,0 +1,18 @@
+{
+  "data_path": "runs/synthetic.csv",
+  "horizon": 5,
+  "test_ratio": 0.15,
+  "val_ratio": 0.15,
+  "thresh": 0.55,
+  "fee_bps": 1.0,
+  "seed": 42,
+  "allow_short": false,
+  "calibrate": false,
+  "data_summary": {
+    "start_timestamp": "2020-01-02 00:00:00",
+    "end_timestamp": "2020-03-24 07:00:00",
+    "n_bars": 1976,
+    "bar_seconds": 3600.0,
+    "class_balance": 0.4716599190283401
+  }
+}
